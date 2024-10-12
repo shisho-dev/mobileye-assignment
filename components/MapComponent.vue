@@ -6,6 +6,7 @@
 import { onMounted, ref } from 'vue';
 import mapboxgl from 'mapbox-gl';
 import { MG_API_KEY } from '../consts'
+
 export default {
   name: 'MapComponent',
   props: {
@@ -63,7 +64,6 @@ export default {
           const cityName = props.items.features[0].properties.city;
           const stateName = props.items.features[0].properties.state;
 
-          // Create a popup
           popup.value = new mapboxgl.Popup()
             .setLngLat(e.lngLat)
             .setHTML(`<h3>${cityName}, ${stateName}</h3>`)
