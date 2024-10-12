@@ -8,4 +8,6 @@ export default defineConfig({
     },
   },
   plugins: [vue()],
+  base: "/mobileye-assignment/",
+  publicDir: "/mobileye-assignment/",
 });
