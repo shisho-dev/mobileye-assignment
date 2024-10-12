@@ -8,5 +8,4 @@ export default defineConfig({
     },
   },
   plugins: [vue()],
-  publicPath: process.env.NODE_ENV === "production" ? "/my-vue-app/" : "/",
 });
