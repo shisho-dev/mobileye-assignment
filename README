@@ -1,0 +1,13 @@
+## Requirements
+
+- Node.js
+- npm
+
+## Installation
+
+git clone <repository-url>
+cd <repository-name>
+
+npm install
+
+npm run dev
