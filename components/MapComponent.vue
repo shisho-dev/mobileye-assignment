@@ -24,7 +24,8 @@ export default {
 
       mapboxgl.accessToken = MG_API_KEY;
       map.value = new mapboxgl.Map({
-        container: mapContainer.value
+        container: mapContainer.value,
+        style: 'mapbox://styles/mapbox/streets-v11'
       });
 
       map.value.on('load', () => {
@@ -57,7 +58,7 @@ export default {
 
         map.value.fitBounds(bounds, {
           padding: 20,
-          maxZoom: 15
+          maxZoom: 20
         });
 
         map.value.on('click', 'polygon-layer', (e) => {
