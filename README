@@ -1,6 +1,6 @@
 ## Requirements
 
-- Node.js
+- Node.js (LTS)
 - npm
 
 ## Installation
@@ -8,6 +8,10 @@
 git clone https://github.com/shisho-dev/mobileye-assignment.git
 cd mobileye-assignment
 
-npm install
 
+make sure youre on branch main 
+
+then run these 2 following commands: 
+
+npm install
 npm run dev
