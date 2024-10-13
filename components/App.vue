@@ -8,6 +8,13 @@ export default {
     ZipCodeForm,
     MapComponent
   },
+  mounted() {
+    const params = new URLSearchParams(window.location.search);
+    const zipCode = params.get("zipcode")
+    if (zipCode) {
+      this.onSubmit(zipCode)
+    }
+  },
   data() {
     return {
       loading: false,

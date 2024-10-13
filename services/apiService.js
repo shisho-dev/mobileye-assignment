@@ -3,16 +3,18 @@ import mock from "../mock";
 const API_BASE_URL =
   "https://vanitysoft-boundaries-io-v1.p.rapidapi.com/reaperfire/rest/v1/public/boundary";
 
+function addZipCodeToUrl(zipCode) {
+  const url = new URL(window.location.href);
+  url.searchParams.set("zipcode", zipCode);
+  window.history.pushState({}, "", url.toString());
+}
+
 const boundaryService = {
   async getByZipCode(zipCode) {
-    if (mock[zipCode]) {
-      return Promise.resolve(mock[zipCode]);
-    }
     const url = new URL(API_BASE_URL);
     const params = new URLSearchParams();
     params.append("zipcode", zipCode);
     url.search = params.toString();
-
     try {
       const response = await fetch(url.toString(), {
         method: "GET",
@@ -26,6 +28,11 @@ const boundaryService = {
         const errormessage = await response.text();
 
         throw new Error(errormessage || `Error fetching boundary data`);
+      }
+      addZipCodeToUrl(zipCode);
+
+      if (mock[zipCode]) {
+        return Promise.resolve(mock[zipCode]);
       }
 
       const data = await response.json();
