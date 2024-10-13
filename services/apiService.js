@@ -1,10 +1,13 @@
 import { BOUNDARIEES_IO_API_KEY } from "../consts";
-
+import mock from "../mock";
 const API_BASE_URL =
   "https://vanitysoft-boundaries-io-v1.p.rapidapi.com/reaperfire/rest/v1/public/boundary";
 
 const boundaryService = {
   async getByZipCode(zipCode) {
+    if (mock[zipCode]) {
+      return Promise.resolve(mock[zipCode]);
+    }
     const url = new URL(API_BASE_URL);
     const params = new URLSearchParams();
     params.append("zipcode", zipCode);
@@ -20,7 +23,9 @@ const boundaryService = {
       });
 
       if (!response.ok) {
-        throw new Error(`Error fetching boundary data: ${response.statusText}`);
+        const errormessage = await response.text();
+
+        throw new Error(errormessage || `Error fetching boundary data`);
       }
 
       const data = await response.json();
