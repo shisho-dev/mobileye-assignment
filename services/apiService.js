@@ -6,7 +6,7 @@ const API_BASE_URL =
 function addZipCodeToUrl(zipCode) {
   const url = new URL(window.location.href);
   url.searchParams.set("zipcode", zipCode);
-  window.history.pushState({}, "", url.toString());
+  window.history.replaceState({}, "", url.toString());
 }
 
 const boundaryService = {
