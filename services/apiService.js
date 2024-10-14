@@ -9,8 +9,17 @@ function addZipCodeToUrl(zipCode) {
   window.history.replaceState({}, "", url.toString());
 }
 
+function isValidZipCode(zipCode) {
+  const pattern = /^\d{5}(-\d{4})?$/;
+  return pattern.test(zipCode);
+}
+
 const boundaryService = {
   async getByZipCode(zipCode) {
+    if (!isValidZipCode(zipCode)) {
+      throw new Error(`Please enter a valid ZIP code.`);
+    }
+
     const url = new URL(API_BASE_URL);
     const params = new URLSearchParams();
     params.append("zipcode", zipCode);
